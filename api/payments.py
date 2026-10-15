@@ -15,6 +15,8 @@ def records():
         return [dict(payment) for payment in _payments]
 
 def create_payment(account, amount, idempotency_key):
+    if amount <= 0:
+        raise ValueError("amount must be positive")
     with _lock:
         key = (account, idempotency_key)
         if key in _by_key:
