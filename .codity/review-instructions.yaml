@@ -1,0 +1,6 @@
+project_context:
+  custom_rules: |
+    For changes to payment creation, fail if the same account and idempotency key
+    can create multiple payment records. Check code paths for reuse and uniqueness
+    enforcement. Cite supporting code. If the relevant storage or concurrency path
+    cannot be inspected, report Inconclusive rather than asserting it is safe.
