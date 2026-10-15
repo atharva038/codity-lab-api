@@ -2,4 +2,4 @@
 USERS = {1: "Ada", 2: "Grace"}
 
 def get_user(user_id=1):
-    return {"name": USERS[user_id]}
+    return {"name": USERS[user_id], "fullName": USERS[user_id]}
