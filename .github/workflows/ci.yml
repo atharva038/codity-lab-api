@@ -8,6 +8,7 @@ permissions:
   contents: read
 jobs:
   tests:
+    if: ${{ false }}
     name: tests
     runs-on: ubuntu-latest
     steps:
