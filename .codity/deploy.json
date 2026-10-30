@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "target": {
+    "kind": "docker_local",
+    "environment": "rehearsal",
+    "context": "desktop-linux",
+    "endpoint": "unix:///Users/atharva_beast/.docker/run/docker.sock",
+    "project": "codity-deploy-test-9c0c8a60e4f4",
+    "resource": "app",
+    "port": 19880
+  },
+  "executable_inputs": [
+    {
+      "path": "deployment_fixture.py",
+      "digest": "5b4b390d5269662cb452ae6d0fd066d08edbf43da7cfbffd1fc572ce6e956df2"
+    }
+  ],
+  "configuration": [],
+  "preflight": [
+    {
+      "executable": "python3",
+      "args": [
+        "deployment_fixture.py",
+        "preflight"
+      ],
+      "timeout_seconds": 15
+    }
+  ],
+  "deploy": [
+    {
+      "executable": "python3",
+      "args": [
+        "deployment_fixture.py",
+        "deploy"
+      ],
+      "timeout_seconds": 15
+    }
+  ],
+  "health": [
+    {
+      "executable": "python3",
+      "args": [
+        "deployment_fixture.py",
+        "health"
+      ],
+      "timeout_seconds": 15
+    },
+    {
+      "executable": "python3",
+      "args": [
+        "deployment_fixture.py",
+        "smoke"
+      ],
+      "timeout_seconds": 15
+    }
+  ],
+  "inspect_revision": {
+    "executable": "python3",
+    "args": [
+      "deployment_fixture.py",
+      "inspect"
+    ],
+    "timeout_seconds": 15
+  },
+  "rollback": [
+    {
+      "executable": "python3",
+      "args": [
+        "deployment_fixture.py",
+        "rollback"
+      ],
+      "timeout_seconds": 15
+    }
+  ],
+  "expected_changes": [
+    "Deploy the reviewed local fixture release",
+    "Verify health, running revision and the greeting response"
+  ],
+  "irreversible_actions": [],
+  "auto_rollback": true
+}
